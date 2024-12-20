@@ -1,0 +1,53 @@
+# Byte-compiled Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+
+# Editor and IDE settings
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# MacOS system files
+.DS_Store
+
+# Logs and debug files
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+*.old
+
+# Python egg files
+*.egg
+*.egg-info/
+dist/
+build/
+*.spec
+
+# Test coverage reports
+.coverage
+*.cover
+htmlcov/
+
+# Pytest cache
+.pytest_cache/
+
+# Linting and analysis tools
+.mypy_cache/
+.pylint.d/
+flake8.log
+
+# Documentation build artifacts
+docs/_build/
+
+# Dependency folders
+.eggs/
+pip-wheel-metadata/
+*.egg-info/
