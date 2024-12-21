@@ -53,6 +53,12 @@ class GapBuffer(TextStorage):
         return "".join(self.buffer[:self.gap_start]
                        + self.buffer[self.gap_end:])
 
+    def get_length(self):
+        '''
+        Return the length of the text
+        '''
+        return len(self.get_text())
+
     def _expand_buffer(self):
         '''
         Expand the size of the bugger when the gap is full

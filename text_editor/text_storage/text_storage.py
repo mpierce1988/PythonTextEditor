@@ -21,3 +21,7 @@ class TextStorage(ABC):
     def get_text(self):
         '''Return the text as a single string.'''
         pass
+
+    @abstractmethod
+    def get_length(self):
+        '''Return the length of the text'''

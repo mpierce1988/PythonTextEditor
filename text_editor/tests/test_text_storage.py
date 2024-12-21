@@ -21,6 +21,13 @@ def test_delete(gap_buffer):
     gap_buffer.delete()
     assert gap_buffer.get_text() == "ab"
 
+def test_get_length(gap_buffer):
+    '''Test getting the length of the buffer'''
+    gap_buffer.insert("a")
+    gap_buffer.insert("b")
+    gap_buffer.insert("c")
+    assert gap_buffer.get_length() == 3
+
 def test_move_cursor(gap_buffer):
     '''Test moving the cursor within the buffer'''
     gap_buffer.insert("a")
