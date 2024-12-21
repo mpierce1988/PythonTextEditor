@@ -1,6 +1,10 @@
+# gui.py
 import tkinter as tk
 from tkinter import messagebox
+from tkinter.font import Font
 from text_editor.editor_logic import EditorLogic
+from text_editor.utils import get_max_chars_per_line, split_text_into_lines
+from text_editor.utils import get_cursor_position
 
 
 class TextEditorGUI:
@@ -50,6 +54,11 @@ class TextEditorGUI:
         # Ensure Canvas widget has focus to receive key events
         self.text_area.focus_set()
 
+        self.font = Font(family="Courier", size=12)
+        self.line_height = 10
+        self.font_fill = "black"
+        self.char_width = self.font.measure("a")
+
     def on_key_press(self, event):
         '''
         Handle key press events in the text editor.
@@ -93,12 +102,46 @@ class TextEditorGUI:
 
         self.text_area.delete("all")  # Clear the canvas
 
-        # Render the text
+        # Get the text
         text = self.editor_logic.get_text()
-        self.text_area.create_text(10, 20, anchor="nw", text=text,
-                                   font=("Courier", 12), fill="black")
 
-        # Render the cursor
-        cursor_x = 10 + (self.editor_logic.cursor_position * 7)
-        self.text_area.create_line(cursor_x, 10, cursor_x, 30,
+        # Split the text into lines
+        canvas_width = self.text_area.winfo_width()
+
+        max_chars_per_line = get_max_chars_per_line(self.char_width,
+                                                    canvas_width)
+
+        lines = split_text_into_lines(text, max_chars_per_line)
+
+        # Render the text
+        self.render_text(lines)
+
+        cursor_position = self.editor_logic.cursor_position
+
+        # Calculaqte the cursor position
+        cursor_line, cursor_offset = get_cursor_position(lines,
+                                                         cursor_position)
+
+        self.render_cursor(cursor_line, cursor_offset)
+
+    def render_text(self, lines: list[str]):
+        '''
+        Render the text on the canvas.
+        '''
+        for i, line in enumerate(lines):
+            y_position = 10 + i * self.line_height
+            self.text_area.create_text(10, y_position, anchor="nw", text=line,
+                                       font=self.font, fill=self.font_fill)
+
+    def render_cursor(self, cursor_line: int, cursor_offset: int):
+        '''
+        Render the cursor on the canvas.
+        :param cursor_x: The x-coordinate of the cursor.
+        :param cursor_y: The y-coordinate of the cursor.
+        '''
+        cursor_y = 10 + cursor_line * self.line_height
+        # cursor_x = 10 + (self.editor_logic.cursor_position * 7)
+        cursor_x = 10 + cursor_offset * self.char_width
+        self.text_area.create_line(cursor_x, cursor_y,
+                                   cursor_x, cursor_y + self.line_height,
                                    fill="green", width=2)

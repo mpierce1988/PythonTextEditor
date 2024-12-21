@@ -1,3 +1,4 @@
+# editor_logic.py
 from text_editor.text_storage.gap_buffer import GapBuffer
 
 
