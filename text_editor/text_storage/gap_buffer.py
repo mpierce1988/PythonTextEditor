@@ -1,4 +1,4 @@
-from text_editor.text_storage.text_storage import TextStorage
+from text_storage.text_storage import TextStorage
 
 
 class GapBuffer(TextStorage):
