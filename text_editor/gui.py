@@ -57,7 +57,7 @@ class TextEditorGUI:
         self.font = Font(family="Courier", size=12)
         self.line_height = 10
         self.font_fill = "black"
-        self.char_width = self.font.measure("a")
+        self.char_width = self.font.measure("m")
 
     def on_key_press(self, event):
         '''

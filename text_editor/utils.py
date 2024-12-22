@@ -4,7 +4,7 @@ def get_max_chars_per_line(char_width: int, canvas_width: int) -> int:
     '''
     Return the maximum number of characters per line.
     '''
-    return canvas_width // char_width
+    return canvas_width // char_width - 5
 
 
 def split_text_into_lines(text: str, max_chars_per_line: int) -> list[str]:
