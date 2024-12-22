@@ -2,9 +2,9 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkinter.font import Font
-from text_editor.editor_logic import EditorLogic
-from text_editor.utils import get_max_chars_per_line, split_text_into_lines
-from text_editor.utils import get_cursor_position
+from editor_logic import EditorLogic
+from utils import get_max_chars_per_line, split_text_into_lines
+from utils import get_cursor_position
 
 
 class TextEditorGUI:
@@ -115,14 +115,7 @@ class TextEditorGUI:
 
         # Render the text
         self.render_text(lines)
-
-        cursor_position = self.editor_logic.cursor_position
-
-        # Calculaqte the cursor position
-        cursor_line, cursor_offset = get_cursor_position(lines,
-                                                         cursor_position)
-
-        self.render_cursor(cursor_line, cursor_offset)
+        self.render_cursor(lines)
 
     def render_text(self, lines: list[str]):
         '''
@@ -133,12 +126,19 @@ class TextEditorGUI:
             self.text_area.create_text(10, y_position, anchor="nw", text=line,
                                        font=self.font, fill=self.font_fill)
 
-    def render_cursor(self, cursor_line: int, cursor_offset: int):
+    def render_cursor(self, lines: list[str]):
         '''
         Render the cursor on the canvas.
-        :param cursor_x: The x-coordinate of the cursor.
-        :param cursor_y: The y-coordinate of the cursor.
+        :param cursor_line: The line number where the cursor is located.
+        :param cursor_offset: The offset within the line where
+        the cursor is located.
         '''
+        cursor_position = self.editor_logic.cursor_position
+
+        # Calculate the cursor position
+        cursor_line, cursor_offset = get_cursor_position(lines,
+                                                         cursor_position)
+
         cursor_y = 10 + cursor_line * self.line_height
         # cursor_x = 10 + (self.editor_logic.cursor_position * 7)
         cursor_x = 10 + cursor_offset * self.char_width

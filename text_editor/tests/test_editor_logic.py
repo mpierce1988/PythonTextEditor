@@ -1,6 +1,5 @@
 import pytest
-from text_editor.editor_logic import EditorLogic
-from text_editor.text_storage.gap_buffer import GapBuffer
+from editor_logic import EditorLogic
 
 @pytest.fixture
 def editor():
@@ -30,10 +29,13 @@ def test_delete_next_character(editor):
 
 def test_move_left(editor):
     editor.insert_character('a')
+    editor.insert_character('b')
+    editor.insert_character('c')
     editor.move_left()
-    assert editor.cursor_position == 0
+    assert editor.get_text() == 'abc'
+    assert editor.cursor_position == 2
 
-def test_move_left_delete_limit(editor):
+def test_move_left_delete_cursor_position(editor):
     editor.insert_character('a')
     editor.move_left()
     editor.delete_character()
@@ -42,9 +44,10 @@ def test_move_left_delete_limit(editor):
 
 def test_move_right(editor):
     editor.insert_character('a')
+    editor.insert_character('b')
     editor.move_left()
     editor.move_right()
-    assert editor.cursor_position == 1
+    assert editor.cursor_position == 2 
 
 def test_get_text(editor):
     editor.insert_character('a')

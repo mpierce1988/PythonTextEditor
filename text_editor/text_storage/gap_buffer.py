@@ -2,10 +2,13 @@
 from text_storage.text_storage import TextStorage
 
 
+DEFAULT_INITIAL_SIZE = 10
+
+
 class GapBuffer(TextStorage):
-    def __init__(self, initial_size=10):
+    def __init__(self, initial_size=DEFAULT_INITIAL_SIZE):
         '''
-        Initialize the hap buffer
+        Initialize the gap buffer
         :param initial_size: The initial size of the buffer.
         '''
         self.buffer = [""] * initial_size
@@ -51,18 +54,19 @@ class GapBuffer(TextStorage):
         '''
         Return the current text as a single string.
         '''
-        return "".join(self.buffer[:self.gap_start]
-                       + self.buffer[self.gap_end:])
+        return "".join(self.buffer[:self.gap_start]) + "".join(
+            self.buffer[self.gap_end:])
 
     def get_length(self):
         '''
         Return the length of the text
         '''
-        return len(self.get_text())
+        # return len(self.get_text())
+        return len(self.buffer) - (self.gap_end - self.gap_start)
 
     def _expand_buffer(self):
         '''
-        Expand the size of the bugger when the gap is full
+        Expand the size of the buffer when the gap is full
         '''
         # Creates a new buffer that is twice the size of the previous buffer
         new_buffer = [""] * (len(self.buffer) * 2)
@@ -70,6 +74,7 @@ class GapBuffer(TextStorage):
         # to the new buffer
         new_buffer[:self.gap_end] = self.buffer[:self.gap_end]
         start_index = len(new_buffer) - (len(self.buffer) - self.gap_end)
-        new_buffer[start_index:] = self.buffer[self.gap_end:]
         self.gap_end += len(new_buffer) - len(self.buffer)
+        new_buffer[start_index:] = self.buffer[self.gap_end - (
+            len(new_buffer) - len(self.buffer)):]
         self.buffer = new_buffer

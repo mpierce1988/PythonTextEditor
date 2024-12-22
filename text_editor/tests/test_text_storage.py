@@ -1,5 +1,5 @@
 import pytest
-from text_editor.text_storage.gap_buffer import GapBuffer
+from text_storage.gap_buffer import GapBuffer
 
 @pytest.fixture
 def gap_buffer():
@@ -36,6 +36,23 @@ def test_move_cursor(gap_buffer):
     gap_buffer.move_cursor(1)
     gap_buffer.insert("x")
     assert gap_buffer.get_text() == "axbc"
+
+def test_move_cursor_left(gap_buffer):
+    '''Test moving the cursor to the left within the buffer'''
+    gap_buffer.insert("a")
+    gap_buffer.insert("b")
+    gap_buffer.insert("c")
+    gap_buffer.move_cursor(1)
+    assert gap_buffer.get_text() == "abc"
+
+def test_move_cursor_right(gap_buffer):
+    '''Test moving the cursor to the right within the buffer'''
+    gap_buffer.insert("a")
+    gap_buffer.insert("b")
+    gap_buffer.insert("c")
+    gap_buffer.move_cursor(1)
+    gap_buffer.move_cursor(2)
+    assert gap_buffer.get_text() == "abc"
 
 def test_expand_buffer(gap_buffer):
     '''Test expanding the buffer when the gap is full'''

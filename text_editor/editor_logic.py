@@ -1,5 +1,5 @@
 # editor_logic.py
-from text_editor.text_storage.gap_buffer import GapBuffer
+from text_storage.gap_buffer import GapBuffer
 
 
 class EditorLogic:
@@ -40,7 +40,7 @@ class EditorLogic:
         '''
         Move the cursor to the left
         '''
-        # Limit the cursor position to 0
+        # Ensure the cursor position does not go below 0
         self.cursor_position = max(0, self.cursor_position - 1)
         self.text_storage.move_cursor(self.cursor_position)
 
@@ -49,12 +49,13 @@ class EditorLogic:
         Move the cursor to the right
         '''
         # Limit the cursor position to the length of the text
-        self.cursor_position = min(len(self.text_storage.get_text()),
+        self.cursor_position = min(self.text_storage.get_length(),
                                    self.cursor_position + 1)
         self.text_storage.move_cursor(self.cursor_position)
 
     def get_text(self):
         '''
         Return the current text in the text editor.
+        :return: The current text as a string.
         '''
         return self.text_storage.get_text()

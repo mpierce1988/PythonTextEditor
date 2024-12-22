@@ -51,3 +51,4 @@ docs/_build/
 .eggs/
 pip-wheel-metadata/
 *.egg-info/
+text_editor/tests/__init__.py
