@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class TextStorage(ABC):
     @abstractmethod
-    def insert(self, char):
+    def insert(self, char: str):
         '''Insert a characer at the current cursor position'''
         pass
 
@@ -13,15 +13,20 @@ class TextStorage(ABC):
         pass
 
     @abstractmethod
-    def move_cursor(self, position):
+    def move_cursor(self, position: int):
         '''Move the cursor to a new position'''
         pass
 
     @abstractmethod
-    def get_text(self):
-        '''Return the text as a single string.'''
+    def get_text(self) -> str:
+        '''
+        Return the text as a single string.
+
+        Returns:
+            str: The text in the text editor.
+        '''
         pass
 
     @abstractmethod
-    def get_length(self):
+    def get_length(self) -> int:
         '''Return the length of the text'''

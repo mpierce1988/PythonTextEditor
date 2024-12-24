@@ -6,10 +6,12 @@ DEFAULT_INITIAL_SIZE = 10
 
 
 class GapBuffer(TextStorage):
-    '''A gap buffer implementation for text storage'''
+    # Constructor
+
     def __init__(self, initial_size=DEFAULT_INITIAL_SIZE):
         '''
-        Initialize the gap buffer
+        A gap buffer implementation for text storage.
+        Initialize the gap buffer.
 
         Args:
             initial_size (int): The initial size of the buffer.
@@ -18,21 +20,26 @@ class GapBuffer(TextStorage):
         self.gap_start = 0
         self.gap_end = initial_size
 
-    def get_text(self):
+    # Public Methods
+
+    def get_text(self) -> str:
         '''
         Return the current text as a single string.
+
+        Returns:
+            str: The text in the text editor.
         '''
         return "".join(self.buffer[:self.gap_start]) + "".join(
             self.buffer[self.gap_end:])
 
-    def get_length(self):
+    def get_length(self) -> int:
         '''
         Return the length of the text
         '''
         # return len(self.get_text())
         return len(self.buffer) - (self.gap_end - self.gap_start)
 
-    def insert(self, char):
+    def insert(self, char: str):
         '''
         Insert a character at the current gap position
 
@@ -51,7 +58,7 @@ class GapBuffer(TextStorage):
         if self.gap_start > 0:
             self.gap_start -= 1
 
-    def move_cursor(self, position):
+    def move_cursor(self, position: int):
         '''
         Move the cursor to a new position, adjusting the gap.
 
@@ -63,6 +70,8 @@ class GapBuffer(TextStorage):
             self._move_cursor_left(position)
         elif position > self.gap_start:
             self._move_cursor_right(position)
+
+    # Protected Methods
 
     def _move_cursor_left(self, position):
         '''
