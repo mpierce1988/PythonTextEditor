@@ -1,5 +1,5 @@
 # Python Text Editor Readme
-## Introduction
+## Challenge
 We use text editors everyday, but do you know how it really works? Ignoring all of the fancy features that your favorite editor has, how would you implement a textbox that supports a movable text cursor and selecting, inserting, and deleting text? 
 
 ## Setup
