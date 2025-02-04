@@ -20,8 +20,8 @@ pip install -r requirements.txt
 
 ### Run Tests
 ```bash
-PYTHONPATH=./text_editor 
-pytest text_editor/tests
+PYTHONPATH=./
+pytest tests
 ```
 
 ### Launch App
