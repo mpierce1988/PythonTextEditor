@@ -1,6 +1,6 @@
 # Python Text Editor Readme
 ## Challenge
-We use text editors everyday, but do you know how it really works? Ignoring all of the fancy features that your favorite editor has, how would you implement a textbox that supports a movable text cursor and selecting, inserting, and deleting text? 
+Create a text editor from scratch, using tkinker canvas. Input text, backspace text, and add new lines with the "Enter" key. Includes unit tests.
 
 ## Setup
 ### Create Virtual Environment
@@ -18,7 +18,17 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Run Tests
+```bash
+python -m unittest discover tests
+```
+
 ### Launch App
 ```bash
 python text_editor/main.py
 ```
+
+![image](https://github.com/user-attachments/assets/2c6db348-4e37-4638-af10-e0acb6ed4953)
+
+
+![Screen Recording 2025-02-03 at 7 53 57 PM](https://github.com/user-attachments/assets/7dc5837b-3e0f-409a-a1a0-a1bcaf85fca9)
