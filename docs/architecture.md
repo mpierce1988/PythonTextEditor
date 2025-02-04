@@ -18,7 +18,5 @@ Use pytest to run these tests.
 ## docs/:
 Helps you and collaborators understand the structure and purpose of each component.
 
-## examples/:
-Example text files to test file loading, saving, and editing.
 ## requirements.txt:
 A file to list dependencies for your project.

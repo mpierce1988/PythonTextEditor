@@ -20,7 +20,8 @@ pip install -r requirements.txt
 
 ### Run Tests
 ```bash
-python -m unittest discover tests
+PYTHONPATH=./text_editor 
+pytest text_editor/tests
 ```
 
 ### Launch App
