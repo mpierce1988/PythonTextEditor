@@ -1,5 +1,5 @@
 import pytest
-from editor_logic import EditorLogic
+from text_editor.editor_logic import EditorLogic
 from text_storage.gap_buffer import GapBuffer
 
 @pytest.fixture

@@ -2,10 +2,10 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkinter.font import Font
-from editor_logic import EditorLogic
+from text_editor.editor_logic import EditorLogic
 from text_storage.text_storage import TextStorage
-from utils import get_max_chars_per_line, split_text_into_lines
-from utils import get_cursor_position
+from text_editor.utils import get_max_chars_per_line, split_text_into_lines
+from text_editor.utils import get_cursor_position
 
 
 class TextEditorGUI:
